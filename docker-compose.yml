@@ -1,7 +1,8 @@
 version: '3'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.9.3
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:${IMAGE_VERSION}
+    container_name: elastic
     environment:
       discovery.type: single-node
       ES_JAVA_OPTS: -Xmx256m -Xms256m
@@ -12,8 +13,8 @@ services:
       - elastic-data:/usr/share/elasticsearch/data
 
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:7.9.3
-    container_name: kib01
+    image: docker.elastic.co/kibana/kibana-oss:${IMAGE_VERSION}
+    container_name: kibana
     ports:
       - 5601:5601
     environment:
