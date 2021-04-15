@@ -9,8 +9,24 @@ services:
       ELASTIC_PASSWORD: changeme
     ports:
       - 9200:9200
+      - 9300:9300
     volumes:
       - elastic-data:/usr/share/elasticsearch/data
+  
+  logstash:
+    image: docker.elastic.co/logstash/logstash-oss:${IMAGE_VERSION}
+    container_name: logstash
+    volumes:
+      - ./config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - "5044:5044"
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    depends_on:
+      - elasticsearch
 
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:${IMAGE_VERSION}
