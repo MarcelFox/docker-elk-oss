@@ -7,6 +7,8 @@ services:
       discovery.type: single-node
       ES_JAVA_OPTS: -Xmx256m -Xms256m
       ELASTIC_PASSWORD: changeme
+    labels:
+      project: "docker-elk-oss"
     ports:
       - 9200:9200
       - 9300:9300
@@ -23,6 +25,8 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash-oss:${IMAGE_VERSION}
     container_name: logstash
+    labels:
+      project: "docker-elk-oss"
     volumes:
       - ./logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
@@ -41,7 +45,10 @@ services:
       dockerfile: Dockerfiles/Dockerfile-kibana
       args:
         IMAGE_VERSION: ${IMAGE_VERSION}
+    labels:
+      project: "docker-elk-oss"
     container_name: kibana
+
     ports:
       - 5601:5601
     environment:
@@ -61,6 +68,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfiles/Dockerfile-elastalert
+    labels:
+      project: "docker-elk-oss"
     image: elastalert:3.0.0
     ports:
       - 3030:3030
