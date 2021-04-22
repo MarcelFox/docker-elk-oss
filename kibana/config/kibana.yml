@@ -4,7 +4,7 @@ elasticsearch.hosts: [ "http://elasticsearch:9200" ]
 
 elasticsearch.username: elastic
 elasticsearch.password: changeme
-kibana.defaultAppId: "dashboard/6ebcff40-9d4b-11eb-bece-7569132f7b4f"
+kibana.defaultAppId: "dashboard/your-dashboard-id"
 newsfeed.enabled: false
 
 elastalert-kibana-plugin.serverHost: elastalert

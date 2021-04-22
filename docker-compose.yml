@@ -77,7 +77,6 @@ services:
     depends_on:
       - elasticsearch
       - kibana
-    restart: always
     volumes:
       - ./elastalert/config/elastalert.yaml:/opt/elastalert/config.yaml
       - ./elastalert/config/elastalert-test.yaml:/opt/elastalert/config-test.yaml
